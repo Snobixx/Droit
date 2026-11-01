@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JurisSTMG — Révision Droit 1ère STMG</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <!-- Barre supérieure de notification / progression -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="brand-icon">⚖️</span>
+                <div>
+                    <h1 class="brand-title">JurisSTMG</h1>
+                    <span class="brand-sub">Droit 1ère STMG • Révision Bac & Contrôles</span>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Recherche rapide -->
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="quick-search" placeholder="Chercher une notion (ex: décret, Kelsen, sanction)..." autocomplete="off">
+                </div>
+
+                <!-- Bouton Thème -->
+                <button id="theme-toggle" class="btn-icon" title="Changer de thème (Clair / Sombre)">
+                    <span id="theme-icon">🌙</span>
+                </button>
+
+                <!-- Bouton Impression / PDF -->
+                <button id="print-btn" class="btn-pill" title="Imprimer ou enregistrer en PDF">
+                    <span>🖨️</span> Imprimer
+                </button>
+            </div>
+        </div>
+
+        <!-- Barre de navigation des onglets -->
+        <nav class="tabs-nav">
+            <div class="nav-container tabs-flex">
+                <button class="tab-btn active" data-tab="cours">
+                    <span class="tab-emoji">📖</span> Le Cours Complet
+                </button>
+                <button class="tab-btn" data-tab="pyramide">
+                    <span class="tab-emoji">🏛️</span> Hiérarchie & Pouvoirs
+                </button>
+                <button class="tab-btn" data-tab="flashcards">
+                    <span class="tab-emoji">🗂️</span> Flashcards <span class="badge-count" id="fc-count">15</span>
+                </button>
+                <button class="tab-btn" data-tab="quiz">
+                    <span class="tab-emoji">🎯</span> QCM Entraînement
+                </button>
+                <button class="tab-btn" data-tab="cas-pratiques">
+                    <span class="tab-emoji">⚖️</span> Cas Pratiques
+                </button>
+                <button class="tab-btn" data-tab="memo">
+                    <span class="tab-emoji">⚡</span> Fiche Express (J-1)
+                </button>
+                <button class="tab-btn" data-tab="lexique">
+                    <span class="tab-emoji">📚</span> Lexique Mots-Clés
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Bannière statistique de progression -->
+    <aside class="progress-banner">
+        <div class="progress-inner">
+            <div class="progress-stat">
+                <span class="stat-label">Progression globale :</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="global-progress-fill" style="width: 25%;"></div>
+                </div>
+                <span class="stat-value" id="global-progress-percent">25%</span>
+            </div>
+            <div class="stats-pills">
+                <span class="pill-stat">🃏 Cartes maîtrisées : <strong id="mastered-cards-count">0</strong>/15</span>
+                <span class="pill-stat">🎯 Meilleur score Quiz : <strong id="best-quiz-score">--/10</strong></span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="main-container">
+
+        <!-- ========================================== -->
+        <!-- ONGLET 1 : LE COURS COMPLET DÉTAILLÉ -->
+        <!-- ========================================== -->
+        <section id="tab-cours" class="tab-content active">
+            <!-- Filtre Chapitre -->
+            <div class="chapter-switcher">
+                <button class="chip active" data-filter-chap="all">Tous les chapitres</button>
+                <button class="chip" data-filter-chap="chap1">Chapitre 1 : Le Droit</button>
+                <button class="chip" data-filter-chap="chap2">Chapitre 2 : Les Sources du Droit</button>
+            </div>
+
+            <!-- ================= CHAPITRE 1 ================= -->
+            <article class="chapter-card" id="section-chap1">
+                <header class="chapter-header ch1-gradient">
+                    <div class="chapter-meta">
+                        <span class="chapter-badge">THÈME 1</span>
+                        <span class="chapter-read-time">⏱️ 6 min de lecture</span>
+                    </div>
+                    <h2>CHAPITRE 1 — LE DROIT</h2>
+                    <p class="chapter-desc">Comprendre pourquoi le droit existe, quelles sont ses fonctions, ses caractéristiques et ses différences avec la morale.</p>
+                    <div class="audio-player-box">
+                        <button class="btn-audio" onclick="speakSection('section-chap1')">
+                            <span>🔊</span> Écouter le résumé audio
+                        </button>
+                        <button class="btn-audio-stop" onclick="stopSpeech()">⏹️ Stop</button>
+                    </div>
+                </header>
+
+                <div class="chapter-body">
+                    <!-- I. Les deux fonctions -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">I</span>
+                            <h3>Les deux fonctions du droit</h3>
+                        </div>
+                        <p class="lead-intro">Le droit ne sert pas seulement à punir : il permet avant tout à des millions d'individus de vivre ensemble sans chaos.</p>
+
+                        <div class="grid-2-cols">
+                            <div class="card-feature">
+                                <div class="card-icon">🏗️</div>
+                                <h4>1. Organiser la société</h4>
+                                <ul>
+                                    <li>Le droit fixe les <strong>règles de vie en société</strong>.</li>
+                                    <li>Il garantit l’<strong>ordre public</strong> (sécurité, tranquillité, salubrité).</li>
+                                    <li>Il encadre les relations et échanges entre les personnes (contrats, mariage, travail, commerce).</li>
+                                </ul>
+                                <div class="example-box">
+                                    <span class="tag-example">Exemple concret</span>
+                                    <p>Le <strong>Code de la route</strong> fixe les règles de circulation (feux rouges, limitations de vitesse) : sans lui, la circulation serait impossible et dangereuse.</p>
+                                </div>
+                            </div>
+
+                            <div class="card-feature">
+                                <div class="card-icon">🕊️</div>
+                                <h4>2. Pacifier la société</h4>
+                                <ul>
+                                    <li>Le droit permet de <strong>régler les conflits sans recourir à la violence</strong> (interdiction de se faire justice soi-même).</li>
+                                    <li>La violation d’une règle de droit peut être <strong>sanctionnée par l’autorité publique</strong>.</li>
+                                    <li>Il protège les plus faibles face aux abus de pouvoir.</li>
+                                </ul>
+                                <div class="example-box">
+                                    <span class="tag-example">Exemple concret</span>
+                                    <p>En cas d'impayé ou de conflit de voisinage, un <strong>tribunal</strong> tranche le litige de manière impartiale plutôt que d'en venir aux mains.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout callout-important">
+                            <span class="callout-icon">💡</span>
+                            <div>
+                                <strong>À RETENIR POUR LE BAC / CONTRÔLE :</strong>
+                                <p>Le droit a deux missions complémentaires : <strong>organiser</strong> la vie en société et <strong>maintenir la paix sociale</strong> (pacifier).</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- II. Les valeurs de la République -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">II</span>
+                            <h3>Les valeurs de la République française</h3>
+                        </div>
+                        <p>Ces quatre piliers fondamentaux irriguent l’ensemble des règles juridiques françaises :</p>
+
+                        <div class="values-grid">
+                            <div class="value-card val-liberte">
+                                <div class="value-header">
+                                    <span class="value-icon">🗽</span>
+                                    <h4>Liberté</h4>
+                                </div>
+                                <p>Pouvoir faire <strong>tout ce qui ne nuit pas à autrui</strong>.</p>
+                                <div class="value-limit">
+                                    <span class="badge-limit">Limite</span>
+                                    <span>Elle est limitée par la liberté des autres et par la loi (ex: liberté d'expression limitée par l'interdiction de la diffamation).</span>
+                                </div>
+                            </div>
+
+                            <div class="value-card val-egalite">
+                                <div class="value-header">
+                                    <span class="value-icon">⚖️</span>
+                                    <h4>Égalité</h4>
+                                </div>
+                                <p>Les individus ont les <strong>mêmes droits et obligations</strong> devant la loi lorsqu’ils sont dans une même situation.</p>
+                                <div class="value-limit">
+                                    <span class="badge-limit">Principe</span>
+                                    <span>À situation identique, traitement juridique identique. Pas de privilèges.</span>
+                                </div>
+                            </div>
+
+                            <div class="value-card val-solidarite">
+                                <div class="value-header">
+                                    <span class="value-icon">🤝</span>
+                                    <h4>Solidarité</h4>
+                                </div>
+                                <p>La société aide et protège les personnes qui en ont besoin face aux aléas de la vie.</p>
+                                <div class="value-limit">
+                                    <span class="badge-limit">Exemples</span>
+                                    <span>Les minima sociaux (RSA), la Sécurité sociale et l'assurance maladie.</span>
+                                </div>
+                            </div>
+
+                            <div class="value-card val-laicite">
+                                <div class="value-header">
+                                    <span class="value-icon">🕊️</span>
+                                    <h4>Laïcité</h4>
+                                </div>
+                                <p>L’État est <strong>neutre à l’égard de toutes les religions</strong>.</p>
+                                <div class="value-limit">
+                                    <span class="badge-limit">Garantie</span>
+                                    <span>Garantit la liberté de conscience (croire ou ne pas croire) et l’égalité des citoyens quelles que soient leurs convictions.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- III. Les caractéristiques de la règle de droit -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">III</span>
+                            <h3>Les 3 caractéristiques de la règle de droit</h3>
+                        </div>
+                        <p>Pour qu'une règle soit considérée comme juridique, elle réunit obligatoirement 3 critères :</p>
+
+                        <div class="features-trio">
+                            <div class="trio-card">
+                                <span class="trio-badge">1</span>
+                                <h4>Elle est Légitime</h4>
+                                <p>Elle émane d’une <strong>autorité compétente</strong> qui dispose du pouvoir constitutionnel ou légal de la créer.</p>
+                                <div class="trio-example">
+                                    <strong>Exemple :</strong> Le Parlement (députés et sénateurs) vote les lois ; le maire prend un arrêté municipal dans sa commune.
+                                </div>
+                            </div>
+
+                            <div class="trio-card">
+                                <span class="trio-badge">2</span>
+                                <h4>Elle est Obligatoire</h4>
+                                <p>Tout le monde doit impérativement la respecter. Sa violation entraîne une <strong>sanction prononcée par l'autorité publique</strong>.</p>
+                                <div class="trio-example">
+                                    <strong>Exemple :</strong> Sanction civile (dommages et intérêts) ou pénale (amende, emprisonnement, retrait de permis).
+                                </div>
+                            </div>
+
+                            <div class="trio-card">
+                                <span class="trio-badge">3</span>
+                                <h4>Elle est Générale</h4>
+                                <p>Elle s’applique de façon impersonnelle et abstraite à <strong>toutes les personnes placées dans une même situation juridique</strong>.</p>
+                                <div class="trio-example">
+                                    <strong>Exemple :</strong> Elle vise « tout conducteur » ou « tout employeur », jamais une personne désignée par son nom.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- IV. Droit et Morale -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">IV</span>
+                            <h3>Droit et Morale : quelle différence ?</h3>
+                        </div>
+                        <p class="subtitle">Un classique des contrôles de 1ère STMG ! Ne confondez pas la source et la nature de la sanction :</p>
+
+                        <div class="comparison-table-wrapper">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Critère</th>
+                                        <th class="col-highlight">La Règle de Droit ⚖️</th>
+                                        <th>La Règle Morale 💭</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Origine</strong></td>
+                                        <td>Imposée par l’<strong>autorité publique</strong> (État, Parlement).</td>
+                                        <td>Dictée par la <strong>conscience individuelle</strong> ou les valeurs d’un groupe.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Finalité</strong></td>
+                                        <td>Organiser et pacifier la <strong>vie en société</strong> (ordre social).</td>
+                                        <td>Perfectionner l'individu (distinction du <strong>bien et du mal</strong>).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sanction en cas de violation</strong></td>
+                                        <td><strong>Sanction juridique officielle</strong> : amende, prison, nullité de contrat, versée par la force publique.</td>
+                                        <td><strong>Sanction personnelle ou sociale</strong> : remords, culpabilité, réprobation d'autrui.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Exemple</strong></td>
+                                        <td>Voler un objet = délit pénal puni de prison.</td>
+                                        <td>Mentir à un ami ou ne pas céder sa place = réprobation morale, sans prison.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Mots-clés Chap 1 -->
+                    <section class="keywords-box">
+                        <h4>🔑 Mots-clés du Chapitre 1</h4>
+                        <div class="keywords-tags">
+                            <div class="kw-item">
+                                <strong>Droit :</strong> Ensemble des règles qui organisent la vie en société et dont le respect est assuré par l’autorité publique.
+                            </div>
+                            <div class="kw-item">
+                                <strong>Ordre public :</strong> Situation nécessaire au bon fonctionnement de la société et au maintien de la sécurité, de la tranquillité et de la salubrité publiques.
+                            </div>
+                            <div class="kw-item">
+                                <strong>Sanction juridique :</strong> Conséquence prévue par le droit en cas de violation d’une règle (amende, réparation, privation de liberté).
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- ================= CHAPITRE 2 ================= -->
+            <article class="chapter-card" id="section-chap2">
+                <header class="chapter-header ch2-gradient">
+                    <div class="chapter-meta">
+                        <span class="chapter-badge">THÈME 1</span>
+                        <span class="chapter-read-time">⏱️ 8 min de lecture</span>
+                    </div>
+                    <h2>CHAPITRE 2 — LES SOURCES DU DROIT</h2>
+                    <p class="chapter-desc">D'où viennent nos règles de droit ? Découvrez les sources internationales, européennes, nationales et la séparation des pouvoirs.</p>
+                    <div class="audio-player-box">
+                        <button class="btn-audio" onclick="speakSection('section-chap2')">
+                            <span>🔊</span> Écouter le résumé audio
+                        </button>
+                        <button class="btn-audio-stop" onclick="stopSpeech()">⏹️ Stop</button>
+                    </div>
+                </header>
+
+                <div class="chapter-body">
+                    <!-- I. Définition -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">I</span>
+                            <h3>Définition des sources du droit</h3>
+                        </div>
+                        <div class="quote-def">
+                            <p>Les <strong>sources du droit</strong> sont les origines des règles de droit, c’est-à-dire les <strong>textes</strong> et les <strong>autorités</strong> qui permettent de créer des règles juridiques.</p>
+                        </div>
+                        <p>Ces sources se divisent en deux grands ensembles : les sources <strong>internationales / européennes</strong> et les sources <strong>nationales</strong>.</p>
+                    </section>
+
+                    <!-- II. Sources internationales -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">II</span>
+                            <h3>Les sources du droit international & européen</h3>
+                        </div>
+
+                        <div class="source-block">
+                            <h4>1. Les Traités Internationaux 🌍</h4>
+                            <p>Ce sont des <strong>accords conclus entre plusieurs États</strong> ou acteurs internationaux. Ils peuvent être :</p>
+                            <ul class="styled-list">
+                                <li><strong>Bilatéraux</strong> (conclus entre 2 États, ex: France et Espagne).</li>
+                                <li><strong>Multilatéraux</strong> (conclus entre plus de 2 États, ex: accord de Paris sur le climat).</li>
+                            </ul>
+                            <div class="callout callout-warning">
+                                <span class="callout-icon">📌</span>
+                                <div>
+                                    <strong>Article 55 de la Constitution française :</strong>
+                                    <p>Les traités régulièrement ratifiés ou approuvés et publiés ont une <strong>autorité supérieure à celle des lois</strong> (sous réserve de leur application par l'autre partie).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="source-block">
+                            <h4>2. Le Droit de l’Union Européenne 🇪🇺</h4>
+                            <p>Le droit européen a une influence majeure sur notre quotidien économique et juridique. On distingue :</p>
+                            <div class="grid-3-cols">
+                                <div class="mini-card">
+                                    <div class="mini-badge">Traité de base</div>
+                                    <h5>Traités européens</h5>
+                                    <p>Ils fondent l'Union européenne et fixent ses principes généraux de fonctionnement.</p>
+                                </div>
+                                <div class="mini-card">
+                                    <div class="mini-badge highlight-blue">Direct & Uniforme</div>
+                                    <h5>Règlements européens</h5>
+                                    <p><strong>Directement applicables</strong> et obligatoires dans tous les pays membres sans texte national (ex: RGPD).</p>
+                                </div>
+                                <div class="mini-card">
+                                    <div class="mini-badge highlight-purple">Objectif à transposer</div>
+                                    <h5>Directives européennes</h5>
+                                    <p>Fixent un <strong>objectif obligatoire</strong> que les États membres doivent <strong>transposer</strong> dans leur loi nationale dans un délai imparti.</p>
+                                </div>
+                            </div>
+                            <div class="small-note">
+                                ℹ️ <em>Les décisions de l'Union européenne</em> peuvent également être obligatoires pour des destinataires spécifiques (un État ou une entreprise).
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- III. Sources nationales -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">III</span>
+                            <h3>Les sources du droit national</h3>
+                        </div>
+
+                        <!-- 1. La Constitution -->
+                        <div class="national-source-item">
+                            <div class="ns-header">
+                                <span class="ns-number">1</span>
+                                <h4>La Constitution de 1958</h4>
+                                <span class="ns-badge">Sommet de la hiérarchie</span>
+                            </div>
+                            <p>C’est le <strong>texte fondamental</strong> de la Ve République.</p>
+                            <ul class="styled-list">
+                                <li>Elle organise les pouvoirs publics (Président, Gouvernement, Parlement).</li>
+                                <li>Elle garantit les droits et libertés fondamentaux des citoyens.</li>
+                                <li>Le <strong>Conseil constitutionnel</strong> veille à la conformité des lois à la Constitution (contrôle de constitutionnalité).</li>
+                            </ul>
+                        </div>
+
+                        <!-- 2. La Loi & Les 7 étapes -->
+                        <div class="national-source-item highlight-border">
+                            <div class="ns-header">
+                                <span class="ns-number">2</span>
+                                <h4>La Loi</h4>
+                                <span class="ns-badge">Votée par le Parlement</span>
+                            </div>
+                            <p>Au sens strict, la loi est adoptée par le <strong>Parlement</strong>, composé de deux chambres : l'<strong>Assemblée nationale</strong> et le <strong>Sénat</strong>.</p>
+
+                            <!-- Processus interactif 7 étapes -->
+                            <div class="law-making-container">
+                                <h5>🔄 Les 7 étapes de l’élaboration d’une loi :</h5>
+                                <div class="steps-progress-grid">
+                                    <div class="step-card" data-step="1">
+                                        <div class="step-num">1</div>
+                                        <div class="step-info">
+                                            <strong>Initiative</strong>
+                                            <p>• <em>Projet de loi</em> (par le Gouvernement / Premier ministre)<br>• <em>Proposition de loi</em> (par un ou plusieurs parlementaires)</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="2">
+                                        <div class="step-num">2</div>
+                                        <div class="step-info">
+                                            <strong>Dépôt</strong>
+                                            <p>Le texte est déposé sur le bureau de l'Assemblée nationale ou du Sénat.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="3">
+                                        <div class="step-num">3</div>
+                                        <div class="step-info">
+                                            <strong>Examen en commission</strong>
+                                            <p>Une commission parlementaire spécialisée étudie, modifie et prépare le texte.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="4">
+                                        <div class="step-num">4</div>
+                                        <div class="step-info">
+                                            <strong>1er vote en assemblée</strong>
+                                            <p>Débat en séance publique et vote par la première assemblée saisie.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="5">
+                                        <div class="step-num">5</div>
+                                        <div class="step-info">
+                                            <strong>Navette parlementaire</strong>
+                                            <p>Examen par la 2e assemblée. Le texte circule entre l'Assemblée et le Sénat jusqu'à accord commun.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="6">
+                                        <div class="step-num">6</div>
+                                        <div class="step-info">
+                                            <strong>Adoption définitive</strong>
+                                            <p>Le texte identique est voté (en cas de désaccord persistant, l'Assemblée nationale a le dernier mot).</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card" data-step="7">
+                                        <div class="step-num">7</div>
+                                        <div class="step-info">
+                                            <strong>Promulgation & Publication</strong>
+                                            <p>Promulguée par le Président de la République et publiée au Journal officiel (JO).</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="zoom-box">
+                                    <strong>🔍 Zoom sur la Navette Parlementaire :</strong>
+                                    <p>C'est le va-et-vient du texte de loi entre l’Assemblée nationale et le Sénat afin d'aboutir à un texte identique adopté par les deux chambres.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Les Règlements -->
+                        <div class="national-source-item">
+                            <div class="ns-header">
+                                <span class="ns-number">3</span>
+                                <h4>Les Règlements</h4>
+                                <span class="ns-badge">Pouvoir exécutif & administratif</span>
+                            </div>
+                            <p>Ils sont pris par les autorités exécutives et administratives dans le cadre de leurs compétences pour préciser les modalités d’application des lois :</p>
+                            <div class="grid-2-cols">
+                                <div class="sub-rule-card">
+                                    <span class="sub-rule-tag">Niveau National</span>
+                                    <h5>Les Décrets</h5>
+                                    <p>Pris par le <strong>Président de la République</strong> ou le <strong>Premier ministre</strong>.</p>
+                                    <span class="sub-example">Ex: décret d'application pour les retraites.</span>
+                                </div>
+                                <div class="sub-rule-card">
+                                    <span class="sub-rule-tag">Niveau Local / Sectoriel</span>
+                                    <h5>Les Arrêtés</h5>
+                                    <p>Pris par des autorités administratives : un <strong>ministre</strong>, un <strong>préfet</strong> (département) ou un <strong>maire</strong> (commune).</p>
+                                    <span class="sub-example">Ex: arrêté municipal limitant la vitesse à 30 km/h près des écoles.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. La Jurisprudence -->
+                        <div class="national-source-item">
+                            <div class="ns-header">
+                                <span class="ns-number">4</span>
+                                <h4>La Jurisprudence</h4>
+                                <span class="ns-badge">Les Décisions des Juges</span>
+                            </div>
+                            <p>La <strong>jurisprudence</strong> correspond à l’<strong>ensemble des décisions rendues par les juridictions</strong> (tribunaux, cours d'appel, Cour de cassation, Conseil d'État).</p>
+                            <div class="roles-juris">
+                                <div class="role-pill">1. Interpréter les règles de droit souvent abstraites</div>
+                                <div class="role-pill">2. Préciser leur application à une situation concrète</div>
+                                <div class="role-pill">3. Les adapter à l'évolution des mœurs et des technologies</div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Le Droit Négocié -->
+                        <div class="national-source-item">
+                            <div class="ns-header">
+                                <span class="ns-number">5</span>
+                                <h4>Le Droit Négocié (Conventions Collectives)</h4>
+                                <span class="ns-badge">Partenaires Sociaux</span>
+                            </div>
+                            <p>Il résulte d’<strong>accords négociés</strong> entre les acteurs du monde professionnel :</p>
+                            <div class="convention-card">
+                                <h5>Exemple phare : Les Conventions Collectives</h5>
+                                <ul>
+                                    <li>Négociées entre les <strong>représentants des employeurs</strong> (syndicats patronaux) et les <strong>représentants des salariés</strong> (syndicats).</li>
+                                    <li>Elles précisent et améliorent les <strong>conditions de travail et les droits des salariés</strong> (salaires minimaux, congés supplémentaires, primes).</li>
+                                    <li>Elles peuvent concerner une <strong>branche professionnelle</strong> (ex: convention de la métallurgie, de la restauration) ou une <strong>entreprise</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- IV. Séparation des pouvoirs -->
+                    <section class="lesson-part">
+                        <div class="part-title">
+                            <span class="num-roman">IV</span>
+                            <h3>Les pouvoirs publics et la séparation des pouvoirs</h3>
+                        </div>
+                        <p class="subtitle">Théorisée par Montesquieu, la séparation des pouvoirs est la condition essentielle d’une démocratie pour éviter toute tyrannie ou abus :</p>
+
+                        <div class="powers-grid">
+                            <div class="power-card pow-leg">
+                                <div class="power-icon">🏛️</div>
+                                <h4>Pouvoir Législatif</h4>
+                                <span class="power-actor">Le Parlement (Assemblée + Sénat)</span>
+                                <div class="power-mission">
+                                    <strong>Mission :</strong>
+                                    <p>Discute, amende et <strong>vote les lois</strong>. Il contrôle également l’action du gouvernement.</p>
+                                </div>
+                            </div>
+
+                            <div class="power-card pow-exe">
+                                <div class="power-icon">🖋️</div>
+                                <h4>Pouvoir Exécutif</h4>
+                                <span class="power-actor">Président & Gouvernement</span>
+                                <div class="power-mission">
+                                    <strong>Mission :</strong>
+                                    <p><strong>Met en œuvre les lois</strong>, prend les décrets d'application et conduit la politique nationale.</p>
+                                </div>
+                            </div>
+
+                            <div class="power-card pow-jud">
+                                <div class="power-icon">⚖️</div>
+                                <h4>Pouvoir Judiciaire</h4>
+                                <span class="power-actor">Les Juridictions (Juges)</span>
+                                <div class="power-mission">
+                                    <strong>Mission :</strong>
+                                    <p><strong>Rend la justice</strong>, veille au respect des lois et tranche les litiges en toute indépendance.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="callout callout-goal">
+                            <strong>🎯 Objectif de la séparation :</strong> Éviter la concentration de tous les pouvoirs entre les mains d'une seule personne ou d'une seule institution.
+                        </div>
+                    </section>
+
+                    <!-- Mots-clés Chap 2 -->
+                    <section class="keywords-box">
+                        <h4>🔑 Mots-clés du Chapitre 2</h4>
+                        <div class="keywords-tags">
+                            <div class="kw-item"><strong>Constitution :</strong> Texte fondamental qui organise les pouvoirs publics et garantit les droits et libertés.</div>
+                            <div class="kw-item"><strong>Traité international :</strong> Accord conclu entre plusieurs États ou acteurs internationaux (primauté art. 55).</div>
+                            <div class="kw-item"><strong>Loi :</strong> Règle adoptée par le Parlement selon la procédure législative.</div>
+                            <div class="kw-item"><strong>Règlement :</strong> Acte juridique pris par une autorité exécutive ou administrative (décret, arrêté).</div>
+                            <div class="kw-item"><strong>Jurisprudence :</strong> Ensemble des décisions rendues par les cours et tribunaux.</div>
+                            <div class="kw-item"><strong>Convention collective :</strong> Accord négocié entre représentants des employeurs et des salariés.</div>
+                            <div class="kw-item"><strong>Promulgation :</strong> Acte par lequel le Président atteste l’existence de la loi et ordonne son exécution.</div>
+                            <div class="kw-item"><strong>Journal officiel (JO) :</strong> Publication officielle permettant de porter les textes juridiques à la connaissance de tous.</div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 2 : HIÉRARCHIE DES SOURCES & SCHÉMAS -->
+        <!-- ========================================== -->
+        <section id="tab-pyramide" class="tab-content">
+            <div class="section-hero">
+                <h2>🏛️ La Hiérarchie des Normes (Pyramide de Kelsen)</h2>
+                <p>En droit français, <strong>une règle de niveau inférieur ne peut JAMAIS contredire une règle de niveau supérieur</strong>. Cliquez sur chaque niveau pour comprendre son rôle :</p>
+            </div>
+
+            <!-- Schéma interactif Pyramide -->
+            <div class="pyramid-interactive-wrapper">
+                <div class="pyramid-container">
+                    <div class="pyramid-level lvl-1" onclick="showLevelDetail(1)">
+                        <span class="lvl-title">1. BLOC DE CONSTITUTIONNALITÉ</span>
+                        <span class="lvl-sub">Constitution de 1958 • Contrôle par le Conseil constitutionnel</span>
+                    </div>
+                    <div class="pyramid-level lvl-2" onclick="showLevelDetail(2)">
+                        <span class="lvl-title">2. BLOC DE CONVENTIONNALITÉ</span>
+                        <span class="lvl-sub">Traités internationaux (Art. 55) • Droit européen (Règlements & Directives)</span>
+                    </div>
+                    <div class="pyramid-level lvl-3" onclick="showLevelDetail(3)">
+                        <span class="lvl-title">3. BLOC DE LÉGALITÉ</span>
+                        <span class="lvl-sub">Lois votées par le Parlement (Assemblée nationale + Sénat)</span>
+                    </div>
+                    <div class="pyramid-level lvl-4" onclick="showLevelDetail(4)">
+                        <span class="lvl-title">4. BLOC RÉGLEMENTAIRE</span>
+                        <span class="lvl-sub">Décrets (Président / 1er Ministre) • Arrêtés (Ministres, Préfets, Maires)</span>
+                    </div>
+                    <div class="pyramid-level lvl-5" onclick="showLevelDetail(5)">
+                        <span class="lvl-title">5. DROIT NÉGOCIÉ & CONTRATS</span>
+                        <span class="lvl-sub">Conventions collectives de branche / d'entreprise • Contrats individuels</span>
+                    </div>
+                </div>
+
+                <!-- Boîte de détail dynamique -->
+                <div class="pyramid-detail-box" id="level-detail-box">
+                    <div class="detail-header" id="detail-header">
+                        <span class="detail-badge" id="detail-badge">NIVEAU 1</span>
+                        <h3 id="detail-title">Le Bloc de Constitutionnalité</h3>
+                    </div>
+                    <div class="detail-content" id="detail-content">
+                        <p><strong>C'est le sommet suprême de l'ordre juridique français.</strong></p>
+                        <p>Il comprend la Constitution de 1958, la Déclaration des Droits de l'Homme et du Citoyen de 1789 et la Charte de l'environnement.</p>
+                        <div class="detail-rule">
+                            <strong>Principe clé :</strong> Aucune loi ni aucun règlement français ne peut être contraire à la Constitution. Le Conseil constitutionnel veille à cette stricte conformité.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schéma de la navette parlementaire -->
+            <div class="schema-box">
+                <h3>🔁 Le Schéma de la Navette Parlementaire</h3>
+                <div class="navette-diagram">
+                    <div class="diag-node">
+                        <span class="node-icon">💡</span>
+                        <strong>1. Initiative</strong>
+                        <span>Projet (Gouv) ou Proposition (Députés/Sénateurs)</span>
+                    </div>
+                    <div class="diag-arrow">➡️</div>
+                    <div class="diag-node highlight-node">
+                        <span class="node-icon">🏛️</span>
+                        <strong>Assemblée Nationale</strong>
+                        <span>Commission + Vote</span>
+                    </div>
+                    <div class="diag-navette">
+                        <span>🔄 Navette (aller-retour du texte)</span>
+                    </div>
+                    <div class="diag-node highlight-node">
+                        <span class="node-icon">🏛️</span>
+                        <strong>Sénat</strong>
+                        <span>Commission + Vote</span>
+                    </div>
+                    <div class="diag-arrow">➡️</div>
+                    <div class="diag-node success-node">
+                        <span class="node-icon">🖋️</span>
+                        <strong>Adoption & Promulgation</strong>
+                        <span>Signature Président + Journal Officiel</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 3 : FLASHCARDS INTERACTIVES -->
+        <!-- ========================================== -->
+        <section id="tab-flashcards" class="tab-content">
+            <div class="flashcards-wrapper">
+                <div class="fc-controls-top">
+                    <div>
+                        <h2>🗂️ Flashcards de Révision</h2>
+                        <p>Cliquez sur la carte ou appuyez sur <kbd>Espace</kbd> pour la retourner et tester votre mémoire !</p>
+                    </div>
+                    <div class="fc-filter-buttons">
+                        <button class="fc-filter active" data-fc-filter="all">Toutes (15)</button>
+                        <button class="fc-filter" data-fc-filter="chap1">Chapitre 1</button>
+                        <button class="fc-filter" data-fc-filter="chap2">Chapitre 2</button>
+                        <button class="fc-filter" data-fc-filter="review">À revoir (<span id="count-to-review">0</span>)</button>
+                    </div>
+                </div>
+
+                <div class="card-stage">
+                    <div class="flashcard" id="current-flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <span class="fc-tag" id="fc-tag">Chapitre 1 • Définition</span>
+                                <h3 id="fc-front-text">Quelles sont les 2 fonctions du droit ?</h3>
+                                <div class="fc-hint">💡 Cliquez pour voir la réponse</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <span class="fc-tag-back">RÉPONSE</span>
+                                <div class="fc-back-content" id="fc-back-text">
+                                    1. <strong>Organiser la société</strong> (fixer les règles, maintenir l'ordre public).<br><br>
+                                    2. <strong>Pacifier la société</strong> (régler les litiges sans violence, garantir la paix sociale).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation des cartes -->
+                <div class="fc-actions">
+                    <button class="btn-fc-nav" id="btn-fc-prev">⬅️ Précédente</button>
+                    <div class="fc-indicator">
+                        <span id="fc-current-idx">1</span> / <span id="fc-total-idx">15</span>
+                    </div>
+                    <button class="btn-fc-nav" id="btn-fc-next">Suivante ➡️</button>
+                </div>
+
+                <div class="fc-feedback-buttons">
+                    <button class="btn-feedback review" id="btn-mark-review">
+                        <span>🔄</span> À revoir encore
+                    </button>
+                    <button class="btn-feedback master" id="btn-mark-master">
+                        <span>✅</span> C'est acquis !
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 4 : QUIZ & QCM DU BAC -->
+        <!-- ========================================== -->
+        <section id="tab-quiz" class="tab-content">
+            <div class="quiz-container">
+                <header class="quiz-header">
+                    <div class="quiz-title-area">
+                        <h2>🎯 QCM Entraînement — 1ère STMG</h2>
+                        <p>12 questions ciblées pour tester si vous êtes au point pour le contrôle !</p>
+                    </div>
+                    <div class="quiz-live-stats">
+                        <span class="quiz-question-badge">Question <strong id="quiz-q-num">1</strong>/12</span>
+                        <span class="quiz-current-score">Score : <strong id="quiz-score-val">0</strong></span>
+                    </div>
+                </header>
+
+                <!-- Zone de question -->
+                <div class="quiz-card" id="quiz-card-box">
+                    <div class="quiz-cat" id="quiz-cat">Chapitre 1 : Les fonctions du droit</div>
+                    <h3 class="quiz-question" id="quiz-question-text">Quelle est la différence fondamentale entre la règle de droit et la règle morale ?</h3>
+
+                    <div class="quiz-options-list" id="quiz-options-list">
+                        <!-- Généré en JS -->
+                    </div>
+
+                    <!-- Explication après réponse -->
+                    <div class="quiz-explanation hidden" id="quiz-explanation">
+                        <div class="expl-title" id="expl-title">✅ Bonne réponse !</div>
+                        <p id="expl-text">La règle de droit est sanctionnée par l'autorité publique (force publique), alors que la morale ne relève que de la conscience personnelle (remords).</p>
+                        <button class="btn-pill btn-next-q" id="btn-next-question">Question suivante ➡️</button>
+                    </div>
+                </div>
+
+                <!-- Écran de résultat final -->
+                <div class="quiz-results hidden" id="quiz-results-box">
+                    <div class="result-badge-icon" id="result-emoji">🏆</div>
+                    <h3 id="result-title">Bravo ! Mention Très Bien !</h3>
+                    <p class="result-score-summary">Vous avez obtenu <strong id="final-score-display">12</strong> sur <strong>12</strong> !</p>
+                    <p id="result-advice">Vous maîtrisez parfaitement les deux premiers chapitres de Droit. Vous êtes prêt(e) pour le 20/20 au contrôle !</p>
+                    <div class="results-actions">
+                        <button class="btn-pill" onclick="restartQuiz()">🔄 Recommencer le QCM</button>
+                        <button class="btn-pill btn-secondary" onclick="switchTab('flashcards')">🗂️ Réviser les Flashcards</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 5 : CAS PRATIQUES INTERACTIFS -->
+        <!-- ========================================== -->
+        <section id="tab-cas-pratiques" class="tab-content">
+            <div class="section-hero">
+                <h2>⚖️ Cas Pratiques d’Entraînement</h2>
+                <p>En STMG, les évaluations testent votre capacité à analyser une situation concrète. Entraînez-vous avec la méthode juridique : <strong>Faits ➡️ Règle de droit ➡️ Solution</strong>.</p>
+            </div>
+
+            <div class="cases-grid">
+                <!-- Cas 1 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-badge">Cas 1 • Autorité & Règlement</span>
+                        <h4>L'arrêté du Maire de Bellevue</h4>
+                    </div>
+                    <div class="case-facts">
+                        <strong>Situation :</strong>
+                        <p>Le maire d'une station balnéaire prend une décision interdisant la circulation des trottinettes électriques sur la promenade de mer entre 10h et 22h pour des raisons de sécurité des piétons. Un touriste conteste et prétend que seul le Président peut prendre une telle décision.</p>
+                    </div>
+                    <div class="case-question">
+                        ❓ <strong>Questions :</strong> Quel est l'acte juridique pris par le maire ? Cette règle est-elle légitime ?
+                    </div>
+                    <button class="btn-reveal-solution" onclick="toggleSolution('sol-1', this)">
+                        👁️ Afficher la correction rédigée
+                    </button>
+                    <div class="case-solution hidden" id="sol-1">
+                        <div class="sol-step"><strong>1. Qualification juridique :</strong> Le maire exerce le pouvoir réglementaire au niveau communal. Son acte est un <em>arrêté municipal</em> (et non un décret qui relève du Président ou Premier ministre).</div>
+                        <div class="sol-step"><strong>2. Règle de droit :</strong> La règle de droit est <em>légitime</em> car elle émane d'une autorité compétente dans son domaine (le maire est compétent pour l'ordre public et la tranquillité publique dans sa commune).</div>
+                        <div class="sol-step"><strong>3. Solution :</strong> Le touriste a tort : le maire a parfaitement le droit de prendre cet arrêté municipal, obligatoire et général pour tous les usagers de la promenade.</div>
+                    </div>
+                </div>
+
+                <!-- Cas 2 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-badge">Cas 2 • Traité vs Loi</span>
+                        <h4>L'Article 55 en action</h4>
+                    </div>
+                    <div class="case-facts">
+                        <strong>Situation :</strong>
+                        <p>Une nouvelle loi française votée par le Parlement entre en contradiction directe avec les dispositions d'un traité international sur les droits de l'enfant, ratifié et publié par la France 5 ans plus tôt.</p>
+                    </div>
+                    <div class="case-question">
+                        ❓ <strong>Question :</strong> Quel texte prévaut ? Justifiez avec l'article clé du cours.
+                    </div>
+                    <button class="btn-reveal-solution" onclick="toggleSolution('sol-2', this)">
+                        👁️ Afficher la correction rédigée
+                    </button>
+                    <div class="case-solution hidden" id="sol-2">
+                        <div class="sol-step"><strong>1. Règle de droit :</strong> Selon l’<strong>article 55 de la Constitution</strong>, les traités ou accords régulièrement ratifiés ou approuvés et publiés ont une autorité supérieure à celle des lois nationales.</div>
+                        <div class="sol-step"><strong>2. Solution :</strong> C'est le <strong>traité international</strong> qui prévaut sur la loi française. Les juges français écarteront l'application de la loi contraire au traité.</div>
+                    </div>
+                </div>
+
+                <!-- Cas 3 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-badge">Cas 3 • Droit négocié</span>
+                        <h4>Les jours de congés supplémentaires de Lucas</h4>
+                    </div>
+                    <div class="case-facts">
+                        <strong>Situation :</strong>
+                        <p>Lucas est salarié dans une entreprise de métallurgie. Le Code du travail (la loi) prévoit 5 semaines de congés payés par an. Cependant, la convention collective de la métallurgie négociée dans sa branche prévoit 6 semaines de congés payés. Son employeur refuse de lui accorder la 6e semaine en disant « La loi prime sur tout ! ».</p>
+                    </div>
+                    <div class="case-question">
+                        ❓ <strong>Question :</strong> Lucas a-t-il droit à sa 6e semaine de congés ?
+                    </div>
+                    <button class="btn-reveal-solution" onclick="toggleSolution('sol-3', this)">
+                        👁️ Afficher la correction rédigée
+                    </button>
+                    <div class="case-solution hidden" id="sol-3">
+                        <div class="sol-step"><strong>1. Règle de droit :</strong> La convention collective est issue du <em>droit négocié</em> entre représentants des employeurs et des salariés. En droit du travail, une convention collective peut accorder des droits plus favorables aux salariés que la loi.</div>
+                        <div class="sol-step"><strong>2. Solution :</strong> L'employeur a tort. Lucas a pleinement droit à sa 6e semaine de congés payés garantie par la convention collective de sa branche professionnelle.</div>
+                    </div>
+                </div>
+
+                <!-- Cas 4 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-badge">Cas 4 • Droit vs Morale</span>
+                        <h4>L'aide bénévole et le remords</h4>
+                    </div>
+                    <div class="case-facts">
+                        <strong>Situation :</strong>
+                        <p>Camille promet solennellement à son meilleur ami de l'aider à réviser tout le week-end pour son bac blanc. Finalement, elle part à une fête et le laisse seul. L'ami menace de porter plainte au commissariat pour faire condamner Camille à une amende.</p>
+                    </div>
+                    <div class="case-question">
+                        ❓ <strong>Question :</strong> La plainte a-t-elle une chance d'aboutir ? Pourquoi ?
+                    </div>
+                    <button class="btn-reveal-solution" onclick="toggleSolution('sol-4', this)">
+                        👁️ Afficher la correction rédigée
+                    </button>
+                    <div class="case-solution hidden" id="sol-4">
+                        <div class="sol-step"><strong>1. Règle de droit :</strong> Il s'agit ici d'une obligation <em>morale</em> (loyauté en amitié) et non d'une règle de droit. La règle de droit est sanctionnée par l'autorité publique, tandis que la violation d'une règle morale n'entraîne qu'une sanction personnelle (remords) ou relationnelle.</div>
+                        <div class="sol-step"><strong>2. Solution :</strong> La plainte sera immédiatement rejetée. Le droit n'intervient pas dans les simples promesses morales amicales dénuées de contrat juridique.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 6 : FICHE MÉMO EXPRESS (J-1) -->
+        <!-- ========================================== -->
+        <section id="tab-memo" class="tab-content">
+            <div class="printable-sheet">
+                <div class="sheet-watermark">JURIS STMG • FICHE RÉVISION CONTRÔLE</div>
+                <div class="sheet-header">
+                    <div>
+                        <h2>⚡ FICHE EXPRESS — L'ESSENTIEL POUR LE CONTRÔLE</h2>
+                        <p class="sheet-sub">Programme 1ère STMG • À relire 15 minutes avant l'épreuve !</p>
+                    </div>
+                    <button class="btn-pill" onclick="window.print()">🖨️ Imprimer cette fiche</button>
+                </div>
+
+                <div class="memo-grid">
+                    <div class="memo-card">
+                        <h3>📌 CHAPITRE 1 : LE DROIT EN BREF</h3>
+                        <div class="memo-item">
+                            <strong>2 Fonctions :</strong>
+                            <p>1. <em>Organiser la société</em> (fixe les règles, garantit l'ordre public).<br>2. <em>Pacifier la société</em> (règle les conflits sans violence, sanctionne les infractions).</p>
+                        </div>
+                        <div class="memo-item">
+                            <strong>3 Caractéristiques de la règle de droit :</strong>
+                            <p>• <strong>Légitime :</strong> émane d'une autorité habilitée (Parlement, maire...).<br>• <strong>Obligatoire :</strong> sanctionnée par l'autorité publique.<br>• <strong>Générale :</strong> s'applique à tous dans la même situation.</p>
+                        </div>
+                        <div class="memo-item">
+                            <strong>4 Valeurs Républicaines :</strong>
+                            <p>Liberté (ne pas nuire à autrui), Égalité (mêmes droits/devoirs), Solidarité (aide aux démunis/santé), Laïcité (neutralité de l'État, liberté de conscience).</p>
+                        </div>
+                        <div class="memo-item highlight-box">
+                            <strong>Droit vs Morale :</strong>
+                            <p>Droit = sanction par l'État (amende, prison).<br>Morale = conscience personnelle (remords).</p>
+                        </div>
+                    </div>
+
+                    <div class="memo-card">
+                        <h3>📌 CHAPITRE 2 : LES SOURCES DU DROIT</h3>
+                        <div class="memo-item">
+                            <strong>Hiérarchie (ordre décroissant) :</strong>
+                            <p>1. Constitution (Conseil constitutionnel)<br>2. Traités internationaux (Art. 55 : prime sur la loi) & Droit UE<br>3. Lois (votées par le Parlement)<br>4. Règlements (Décrets = Président/1er Min ; Arrêtés = Ministres/Préfets/Maires)<br>5. Conventions collectives (droit négocié)</p>
+                        </div>
+                        <div class="memo-item">
+                            <strong>Droit Européen :</strong>
+                            <p>• <em>Règlements :</em> directement applicables.<br>• <em>Directives :</em> objectifs à transposer dans la loi.</p>
+                        </div>
+                        <div class="memo-item">
+                            <strong>Les 7 étapes de la Loi :</strong>
+                            <p>1. Initiative (Projet = Gouv / Proposition = Parlement)<br>2. Dépôt ➔ 3. Commission ➔ 4. Vote 1ère assemblée<br>5. Navette parlementaire (AN 🔁 Sénat)<br>6. Adoption définitive ➔ 7. Promulgation & Publication JO</p>
+                        </div>
+                        <div class="memo-item highlight-box">
+                            <strong>Séparation des Pouvoirs :</strong>
+                            <p>Législatif (vote les lois) • Exécutif (met en œuvre les lois) • Judiciaire (rend la justice). Évite la tyrannie !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ONGLET 7 : LEXIQUE ET MOTS-CLÉS -->
+        <!-- ========================================== -->
+        <section id="tab-lexique" class="tab-content">
+            <div class="section-hero">
+                <h2>📚 Glossaire des Mots-Clés Officiels</h2>
+                <p>Retrouvez toutes les définitions exactes attendues par les correcteurs au Bac STMG :</p>
+            </div>
+
+            <div class="lexique-search-bar">
+                <input type="text" id="lexique-filter-input" placeholder="Filtrer une définition (ex: promulgation, jurisprudence, directive)...">
+            </div>
+
+            <div class="glossary-grid" id="glossary-container">
+                <!-- Rempli dynamiquement -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p><strong>JurisSTMG</strong> — Conçu pour la réussite en Droit 1ère STMG • Conforme au programme officiel de l'Éducation Nationale.</p>
+            <p class="footer-sub">Astuce : Enregistrez cette page dans vos favoris pour réviser avant chaque devoir sur table !</p>
+        </div>
+    </footer>
+
+    <!-- Canvas pour les confettis du Quiz -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
