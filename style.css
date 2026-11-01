@@ -215,18 +215,29 @@ body.dark-theme .top-nav {
     color: var(--text-primary);
 }
 
-/* Onglets de navigation */
+/* =========================================================
+   BARRE DE NAVIGATION : onglets desktop & menu burger mobile
+   ========================================================= */
 .tabs-nav {
     background: var(--bg-surface);
     border-top: 1px solid var(--border);
-    overflow-x: auto;
+    position: relative;
 }
 
+/* --- Burger bar : masquée par défaut sur desktop --- */
+.burger-bar {
+    display: none;
+}
+
+/* --- Flex row sur desktop --- */
 .tabs-flex {
     padding: 6px 20px;
     gap: 8px;
     justify-content: flex-start;
+    overflow-x: auto;          /* fallback sur tablettes intermédiaires */
+    scrollbar-width: none;
 }
+.tabs-flex::-webkit-scrollbar { display: none; }
 
 .tab-btn {
     background: transparent;
@@ -261,6 +272,122 @@ body.dark-theme .top-nav {
     font-size: 0.7rem;
     padding: 2px 7px;
     border-radius: var(--radius-pill);
+}
+
+/* ======================================================
+   BURGER MENU — mobile (≤ 720 px)
+   ====================================================== */
+@media (max-width: 720px) {
+
+    /* --- Afficher la barre burger --- */
+    .burger-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .burger-current-label {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    /* --- Bouton hamburger --- */
+    .burger-btn {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+        transition: var(--transition);
+        flex-shrink: 0;
+    }
+
+    .burger-btn:hover {
+        background: var(--primary-light);
+        border-color: var(--primary);
+    }
+
+    .burger-line {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: var(--transition);
+    }
+
+    /* Transformation en X quand ouvert */
+    .burger-btn.is-open .burger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .burger-btn.is-open .burger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    .burger-btn.is-open .burger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* --- Le menu dropdown --- */
+    #tabs-menu {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px 12px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--bg-surface);
+        border-bottom: 2px solid var(--primary);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        animation: dropDown 0.22s ease;
+    }
+
+    #tabs-menu.is-open {
+        display: flex;
+    }
+
+    @keyframes dropDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-btn {
+        width: 100%;
+        padding: 13px 16px;
+        font-size: 0.95rem;
+        border-radius: var(--radius-sm);
+        justify-content: flex-start;
+    }
+
+    .tab-btn.active {
+        border-left: 3px solid var(--primary);
+        background: var(--primary-light);
+    }
+
+    /* --- Overlay sombre derrière le menu --- */
+    .burger-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 150;
+    }
+
+    .burger-overlay.is-open {
+        display: block;
+    }
 }
 
 /* Bannière de progression */
@@ -1978,8 +2105,8 @@ body.dark-theme .zoom-box {
    ========================================================= */
 @media (max-width: 868px) {
     .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
     }
 
     .nav-actions {
@@ -2009,6 +2136,21 @@ body.dark-theme .zoom-box {
 
     .chapter-body {
         padding: 20px;
+    }
+
+    .chapter-header {
+        padding: 24px 20px;
+    }
+
+    .navette-diagram {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .diag-arrow {
+        text-align: center;
+        font-size: 1.4rem;
+        transform: rotate(90deg);
     }
 }
 

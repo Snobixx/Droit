@@ -483,7 +483,7 @@ function initTheme() {
     });
 }
 
-// --- GESTION DES ONGLETS ---
+// --- GESTION DES ONGLETS (desktop + burger mobile) ---
 function initTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     tabBtns.forEach(btn => {
@@ -492,10 +492,45 @@ function initTabs() {
             switchTab(tabId);
         });
     });
+
+    // --- Burger menu ---
+    const burgerBtn  = document.getElementById('burger-btn');
+    const tabsMenu   = document.getElementById('tabs-menu');
+    const overlay    = document.getElementById('burger-overlay');
+
+    if (burgerBtn) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = tabsMenu.classList.toggle('is-open');
+            burgerBtn.classList.toggle('is-open', isOpen);
+            overlay.classList.toggle('is-open', isOpen);
+            burgerBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Fermer en cliquant sur l'overlay
+        overlay.addEventListener('click', closeBurger);
+
+        // Fermer sur Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBurger();
+        });
+    }
+}
+
+function closeBurger() {
+    const burgerBtn = document.getElementById('burger-btn');
+    const tabsMenu  = document.getElementById('tabs-menu');
+    const overlay   = document.getElementById('burger-overlay');
+    if (!burgerBtn) return;
+    tabsMenu.classList.remove('is-open');
+    burgerBtn.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
 }
 
 function switchTab(tabId) {
-    document.querySelectorAll('.tab-btn').forEach(b => {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(b => {
         b.classList.toggle('active', b.getAttribute('data-tab') === tabId);
     });
 
@@ -508,6 +543,16 @@ function switchTab(tabId) {
         activeContent.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Met à jour le label du burger avec le nom de l'onglet actif
+    const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+    const labelEl = document.getElementById('burger-current-label');
+    if (activeBtn && labelEl) {
+        labelEl.textContent = activeBtn.textContent.trim();
+    }
+
+    // Ferme le menu burger après sélection
+    closeBurger();
 }
 
 // --- FILTRE DES CHAPITRES DANS L'ONGLET COURS ---

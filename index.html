@@ -43,12 +43,23 @@
 
         <!-- Barre de navigation des onglets -->
         <nav class="tabs-nav">
-            <div class="nav-container tabs-flex">
+            <!-- Bouton Burger (mobile uniquement) -->
+            <div class="burger-bar">
+                <span class="burger-current-label" id="burger-current-label">📖 Le Cours Complet</span>
+                <button class="burger-btn" id="burger-btn" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+
+            <!-- Menu déroulant (desktop : flex row / mobile : dropdown) -->
+            <div class="nav-container tabs-flex" id="tabs-menu">
                 <button class="tab-btn active" data-tab="cours">
                     <span class="tab-emoji">📖</span> Le Cours Complet
                 </button>
                 <button class="tab-btn" data-tab="pyramide">
-                    <span class="tab-emoji">🏛️</span> Hiérarchie & Pouvoirs
+                    <span class="tab-emoji">🏛️</span> Hiérarchie &amp; Pouvoirs
                 </button>
                 <button class="tab-btn" data-tab="flashcards">
                     <span class="tab-emoji">🗂️</span> Flashcards <span class="badge-count" id="fc-count">15</span>
@@ -67,6 +78,9 @@
                 </button>
             </div>
         </nav>
+
+        <!-- Overlay sombre derrière le menu burger (mobile) -->
+        <div class="burger-overlay" id="burger-overlay"></div>
     </header>
 
     <!-- Bannière statistique de progression -->
